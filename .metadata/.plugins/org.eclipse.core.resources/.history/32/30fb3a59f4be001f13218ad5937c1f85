@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>product list</title>
+	</head>
+	<body>
+		<div>
+			<h2>product list</h2>
+		       <table border="2">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Brand</th>
+						<th>MadeIn</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Discountrate</th>
+						<th>Discountprice</th>
+						<th>Taxprice</th>
+						<th>Offerprice</th>
+						<th>Finalprice</th>
+						<th>Stockvalue</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product:${Product}">
+						<td th:text="${product id}">
+					    <td th:text="${product name}">
+						<td th:text="${product brand}">	
+						<td th:text="${product madein}">
+						<td th:text="${product price}">
+					    <td th:text="${product quantity}">
+						<td th:text="${product discountrate}">
+						<td th:text="${product discountprice}">
+						<td th:text="${product taxprice}">
+						<td th:text="${product offerprice}">
+						<td th:text="${product finalprice}">
+						<tr th:text="${product stockvalue}">
+						</tr>
+				</tbody>
+			   </table>
+			 </div>
+		  </body>
+        </html>

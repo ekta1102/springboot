@@ -1,0 +1,57 @@
+ package com.sathya.springbootmvc.Service;
+
+
+
+import org.hibernate.validator.internal.util.privilegedactions.GetMethodFromGetterNameCandidates;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.support.Repositories;
+
+import com.sathya.springbootmvc.Repository.Repository;
+import com.sathya.springbootmvc.productEntity.ProductEntity;
+import com.sathya.springbootmvc.productmodel.ProductModel;
+@org.springframework.stereotype.Service
+public class Service {
+    @Autowired
+    Repository repository;
+    
+    
+    public void saveProductDetails(ProductModel model)
+    {
+    	double stockValue = model.getPrice() * model.getQuantity();
+
+        
+        double discountPrice = model.getPrice() * model.getDiscountrate() / 100;
+
+        
+        double offerPrice = model.getPrice() - discountPrice;
+
+        
+        double finalPrice = model.getPrice() - discountPrice;
+
+        double taxprice = model.getPrice()*taxrate()/100;
+        
+        
+        ProductEntity productEntity = new ProductEntity();
+        productEntity.setName(model.getName());
+        productEntity.setBrand(model.getBrand());
+        productEntity.setMadeIN(model.getMadeIn());
+        productEntity.setPrice(model.getPrice());
+        productEntity.setQuantity(model.getQuantity());
+        productEntity.setDiscountrate(model.getDiscountrate());
+        productEntity.setDiscountprice(discountPrice);
+        productEntity.setTaxprice(model.getTaxrate());
+        productEntity.setOfferprice(offerPrice);
+        productEntity.setFinalprice(finalPrice);
+        productEntity.setStockvalue(stockValue);
+      
+      }
+
+
+	private double taxrate() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+}
+
+    
+    	

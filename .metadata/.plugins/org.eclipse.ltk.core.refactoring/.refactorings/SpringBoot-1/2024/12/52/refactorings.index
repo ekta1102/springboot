@@ -1,0 +1,16 @@
+1734859243325	Rename type 'Employee'
+1734861621551	Rename package 'repository'
+1734862383448	Rename type 'Entity'
+1734862419314	Rename package 'com.sathya.MVC.entity'
+1734862450374	Delete element
+1734871270406	Rename package 'com.sathya.MVC.employee'
+1734871357405	Rename package 'com.sathya.MVC'
+1734880639055	Rename package 'com.sathya.MVC.employeeentity'
+1734880657249	Rename package 'com.sathya.MVC.employeemodel'
+1734880668684	Rename package 'com.sathya.MVC.employeeservice'
+1734880704782	Rename package 'com.sathya.MVC.repository'
+1734880723729	Rename package 'com.sathya.MVC.TestController'
+1734880737584	Rename package 'com.sathya.MVC.employee.service'
+1734880752084	Rename package 'com.sathya.MVC.employee.model'
+1734880773477	Rename package 'com.sathya.MVC.employe.eentity'
+1734884070288	Delete element

@@ -1,0 +1,5 @@
+package com.sathya.MVC.employeerepository;
+
+public interface EmployeeRepository {
+
+}

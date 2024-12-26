@@ -1,0 +1,13 @@
+<html>
+	<head>
+		<title>Search</title>
+	</head>
+	<body>
+		<h2>search for a product</h2>
+		<form action="@{/searchbyid}"method="post">
+			<label for="id">enter id:</label>
+			<input type="number"name="id" id="id" required>
+			<button type="submit">search</button>
+		</form>
+	</body>
+</html>

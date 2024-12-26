@@ -1,0 +1,148 @@
+ package com.sathya.springbootmvc.controller;
+
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.validation.ValidationErrors;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingErrorProcessor;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.sathya.springbootmvc.Service.productService;
+import com.sathya.springbootmvc.productEntity.ProductEntity;
+import com.sathya.springbootmvc.productmodel.ProductModel;
+
+import jakarta.validation.Valid;
+
+import org.springframework.web.bind.annotation.RequestBody;
+
+
+
+@org.springframework.stereotype.Controller
+public class Controller {
+	
+	
+	@Autowired
+	productService service;
+	
+	   @GetMapping("/text")
+       public String say()
+       {
+    	   return "greeting";
+       }
+	   
+	   
+	   
+	   
+	   @GetMapping("/productform")
+	   public String getproductform()
+	   {
+		   return "addproduct";
+	   }
+	   
+	   
+	   @PostMapping("/submit")
+	   public String submitproduct(ProductModel  productmodel)
+	   {
+	   	  
+		   service.saveProductDetails(productmodel);
+	   	   return "success";
+	   }
+
+	   
+	   @GetMapping("/getallproducts")
+	   public String getallproduct(Model model)
+	   {
+		 List<ProductEntity> product = service.getallproducts();
+		  
+		  model.addAttribute("product", product);
+		  return "product-list";
+	   }
+	   
+	   
+	   
+	   @GetMapping("/getsearchform")
+	   public String getsearchform() 
+	   {
+	       return "Search";
+	   }
+     
+
+        @PostMapping("/searchbyid")
+        public String searchbyid(@RequestParam long id, Model model)
+      {
+	      ProductEntity product= service.searchById(id);
+	      
+	       model.addAttribute("product", product);
+	        return "Search";
+       }
+        
+        
+        
+        @GetMapping("/delete/{id}")
+        public String deleteProductId(@PathVariable Long id)
+        {
+        
+		service.deletebyid(id);
+        return "redirect:/getallproducts";
+        }
+        
+        
+        @GetMapping("/edit/{id}")
+        public String editbyid(@PathVariable long id, Model model)
+        {
+        	ProductModel productModel = service.editbyid(id);
+        	
+        	model.addAttribute("Product", productModel);
+        	model.addAttribute("id", id);
+        	return "Edit-form";
+        }
+        
+        
+       @PostMapping("/editproductsave/{id}")
+       public String updateproduct(@PathVariable long id,ProductModel productModel)
+       {
+    	   service.updatebyid(id, productModel);
+    	   return "redirect:/getallproducts";
+    	   
+       }
+    
+       
+       @PostMapping("/saveproduct")
+       public String saveproduct(@Valid ProductModel productModel,BindingResult bindingResult,ProductModel model)
+       {
+    	   HashMap<String, String> validationerrors = new HashMap<String, String>();
+    	   
+    	   if(bindingResult.hasErrors())
+    	   {
+    		   for(FieldError fieldError : bindingResult.getFieldError())
+    		   
+    		   {
+    			  ValidationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
+			   }
+    		   
+    		  model.addAttribute("validationErrors",validationerrors);
+    		    return "add-product";
+    		   
+    		   productService productService = new productService();
+			productService.saveProductDetails(productModel);
+    		    return"redirect:/getallproducts";
+    	   }
+       }
+  }
+        
+  
+
+
+
+
+	   
+	   
+	   

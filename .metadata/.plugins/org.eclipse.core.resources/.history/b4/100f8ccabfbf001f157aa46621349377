@@ -1,0 +1,88 @@
+ package com.sathya.springbootmvc.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.sathya.springbootmvc.Service.Service;
+import com.sathya.springbootmvc.productEntity.ProductEntity;
+import com.sathya.springbootmvc.productmodel.ProductModel;
+
+
+@org.springframework.stereotype.Controller
+public class Controller {
+	
+	
+	@Autowired
+	Service service;
+	
+	   @GetMapping("/text")
+       public String say()
+       {
+    	   return "greeting";
+       }
+	   
+	   
+	   
+	   
+	   @GetMapping("/productform")
+	   public String getproductform()
+	   {
+		   return "addproduct";
+	   }
+	   
+	   
+	   @PostMapping("/submit")
+	   public String submitproduct(ProductModel  productmodel)
+	   {
+	   	  
+		   service.saveProductDetails(productmodel);
+	   	   return "success";
+	   }
+
+	   
+	   @GetMapping("/getallproducts")
+	   public String getallproduct(Model model)
+	   {
+		 List<ProductEntity>products = service.getallproducts();
+		  
+		  model.addAttribute("Product", products);
+		  return "product-list";
+	   }
+	   
+	   
+	   
+	   @GetMapping("/getsearchform")
+	   public String getsearchform() 
+	   {
+	       return "Search";
+	   }
+     
+
+        @PostMapping("/searchbyid")
+        public String searchbyid(@RequestParam long id, Model model)
+      {
+	      ProductEntity product= service.searchById(id);
+	      
+	       model.addAttribute("product", product);
+	        return "Search";
+       }
+        
+        @GetMapping("/delete/{id}")
+        public String deleteProductId(@PathVariableLong id)
+        {
+        Service.deletebyid(id);
+        return "redirect:/getallproducts";
+        }
+  }
+
+
+
+	   
+	   
+	   

@@ -1,0 +1,29 @@
+package com.sathya.springbootmvc.productmodel;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+ @Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ProductModel {
+  private String name;
+  private String brand;
+  private String madeIn;
+  private double price;
+  private int quantity;
+  private double discountrate;
+public void setStockValue(double stockValue) {
+	// TODO Auto-generated method stub
+	
+}
+public double getTaxrate() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+public void setDiscountrate(double discountPrice) {
+	// TODO Auto-generated method stub
+	
+}
+}

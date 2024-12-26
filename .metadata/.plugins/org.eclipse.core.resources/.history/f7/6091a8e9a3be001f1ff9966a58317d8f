@@ -1,0 +1,19 @@
+ package com.sathya.springbootmvc.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.support.Repositories;
+
+import com.sathya.springbootmvc.Repository.Repository;
+import com.sathya.springbootmvc.productmodel.ProductModel;
+@org.springframework.stereotype.Service
+public class Service {
+    @Autowired
+    Repository repository;
+    
+    
+    public void saveProductDetails(ProductModel model)
+    {
+    	
+    }
+}
+

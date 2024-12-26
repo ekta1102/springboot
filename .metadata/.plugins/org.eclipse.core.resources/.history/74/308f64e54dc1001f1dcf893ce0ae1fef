@@ -1,0 +1,120 @@
+ package com.sathya.springbootmvc.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import com.sathya.springbootmvc.Repository.ProductRepository;
+import com.sathya.springbootmvc.productEntity.ProductEntity;
+import com.sathya.springbootmvc.productmodel.ProductModel;
+
+
+@org.springframework.stereotype.Service
+public class productService 
+{
+    @Autowired
+    ProductRepository repository;
+   
+
+	public void saveProductDetails(ProductModel model)
+    {
+    	double stockvalue = model.getPrice() * model.getQuantity();
+
+        
+        double discountPrice = model.getPrice() * model.getDiscountrate() / 100;
+
+        
+        double offerPrice = model.getPrice() - discountPrice;
+
+        
+        double taxprice = model.getPrice()* 18/100;
+        
+        
+        double finalPrice = offerPrice + taxprice;
+        
+        
+        ProductEntity productEntity = new ProductEntity();
+        
+        productEntity.setName(model.getName());
+        productEntity.setBrand(model.getBrand());
+        productEntity.setMadein(model.getMadein());
+        productEntity.setPrice(model.getPrice());
+        productEntity.setQuantity(model.getQuantity());
+        productEntity.setDiscountrate(model.getDiscountrate());
+        
+        
+        productEntity.setDiscountprice(discountPrice);
+        productEntity.setTaxprice(taxprice);
+        productEntity.setOfferprice(offerPrice);
+        productEntity.setFinalprice(finalPrice);
+        productEntity.setStockvalue(stockvalue);
+         
+         
+        repository.save(productEntity);
+       
+      }
+
+	public List<ProductEntity> getallproducts() {
+		List<ProductEntity> product = repository.findAll();
+		return product;
+	}
+
+	
+	public ProductEntity searchById(long id)
+	{
+		Optional<ProductEntity> optionaldata = repository.findById(id);
+		if(optionaldata.isPresent())
+		{
+			ProductEntity product = optionaldata.get();
+			return product;
+		}
+		else
+		{
+			return null;
+		
+	    }
+   }
+	
+	
+     public void deletebyid(long id)
+     {
+    	 repository.deleteById(id);
+     }
+     
+     
+     public ProductModel editbyid(long id)
+     {
+    	 Optional<ProductEntity> optionaldata = repository.findById(id);
+    	 if(optionaldata.isPresent())
+    	 {
+    		 ProductEntity product = optionaldata.get();
+    		 
+    		 ProductModel productModel = new ProductModel();
+    		 productModel.setName(product.getName()); 
+    		 productModel.setBrand(product.getBrand());
+    		 productModel.setMadein(product.getMadein());
+    		 productModel.setPrice(product.getPrice());
+    		 productModel.setQuantity(product.getQuantity());
+    		 productModel.setDiscountrate(product.getDiscountrate());
+    		 return productModel;
+    		 }
+    	 else
+    	 {
+    		 return null;
+    	 }
+     }
+
+    public void updatebyid(long id, productModel)
+    {
+    	Optional<ProductEntity>optionaldata = repository.findById(id);
+    	 if
+		
+	}
+	
+	}
+     
+
+
+
+    
+    	

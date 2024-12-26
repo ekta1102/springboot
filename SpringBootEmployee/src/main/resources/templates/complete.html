@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title> form</title>
+	</head>
+<body>
+	<h1>Employee form</h1>
+<form th:action="@{/submit}" method="post">
+	<label>Employee ID:</label>
+	<input type="number" name="id" placeholder="enter employer ID" required>
+	<br><br>
+	
+	<label>Employee Name:</label>
+	<input type="text" name="name" placeholder="enter employee name" required>
+	<br><br>
+	
+	<label>Employee phone no:</label>
+	<input type="number" name="phoneno" placeholder="enter phone no" required>
+	<br><br>
+	
+	<label>Gender</label>
+	<input type="radio" name="gender" value="Male">Male
+	<input type="radio" name="gender" value="Female">Female
+	<br><br>
+	
+	<label>Date of joining</label>
+	<input type="date" name="doj" required>
+	<br><br>
+	
+	<label>Department No:</label>
+	<input type="=number" name="deptno" placeholder="enter department no" required>
+	<br><br>
+	
+	<label>Salary:</label>
+	<input type="number" name="salary" placeholder="enter employee salary" required>
+	<br><br>
+	
+	<label>email:</label>
+	<input type="email" name="email" placeholder="enter employee email" required>
+	<br><br>
+	
+	<button type="submit">Submit</button>
+	
+       </form>
+		</body>
+		</html>

@@ -1,0 +1,5 @@
+package com.sathya.MVC.employeeEntity;
+
+public class Entity {
+
+}

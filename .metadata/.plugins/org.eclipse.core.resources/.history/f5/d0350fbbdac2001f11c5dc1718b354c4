@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title> form</title>
+	</head>
+<body>
+	<h1>Product Form</h1>
+<form th:action="@{/submit}" method="post">
+            
+                <label for="product-name">Product Name</label>
+                <input type="text" id="product-name" name="name" placeholder="Enter product name" required>
+                <br>
+				<br>
+				
+                <label for="brand">Brand</label>
+                <input type="text" id="brand" name="brand" placeholder="Enter brand name" required>
+                <br>
+				<br>
+				
+                <label for="made-in">Made In</label>
+                <input type="text" id="made-in" name="madein" placeholder="Enter origin country" required>
+                <br>
+                <br>            
+                <label for="price">Price </label>
+                <input type="number" id="price" name="price" placeholder="Enter product price" step="0.01" required>
+                <br><br>
+            
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" name="quantity" placeholder="Enter available quantity" required>
+                <br><br>
+				  
+				<label for="discountrate">Discountrate</label>
+				<input type="number" id="discountrate" name="discountrate" placeholder="Enter discount" required>
+				<br><br>
+            
+                <button type="submit">Submit Product</button>
+            
+        </form>
+		</body>
+		</html>

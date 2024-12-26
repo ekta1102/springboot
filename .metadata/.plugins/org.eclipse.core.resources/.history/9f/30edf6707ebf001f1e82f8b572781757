@@ -1,0 +1,79 @@
+ package com.sathya.springbootmvc.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import com.sathya.springbootmvc.Repository.Repository;
+import com.sathya.springbootmvc.productEntity.ProductEntity;
+import com.sathya.springbootmvc.productmodel.ProductModel;
+
+
+@org.springframework.stereotype.Service
+public class Service {
+    @Autowired
+    Repository repository;
+   
+
+	public void saveProductDetails(ProductModel model)
+    {
+    	double stockvalue = model.getPrice() * model.getQuantity();
+
+        
+        double discountPrice = model.getPrice() * model.getDiscountrate() / 100;
+
+        
+        double offerPrice = model.getPrice() - discountPrice;
+
+        
+        double taxprice = model.getPrice()* 18/100;
+        
+        
+        double finalPrice = offerPrice + taxprice;
+        
+        
+        ProductEntity productEntity = new ProductEntity();
+        
+        productEntity.setName(model.getName());
+        productEntity.setBrand(model.getBrand());
+        productEntity.setMadein(model.getMadein());
+        productEntity.setPrice(model.getPrice());
+        productEntity.setQuantity(model.getQuantity());
+        productEntity.setDiscountrate(model.getDiscountrate());
+        
+        
+        productEntity.setDiscountprice(discountPrice);
+        productEntity.setTaxprice(taxprice);
+        productEntity.setOfferprice(offerPrice);
+        productEntity.setFinalprice(finalPrice);
+        productEntity.setStockvalue(stockvalue);
+         
+         
+        repository.save(productEntity);
+       
+      }
+
+	public List<ProductEntity> getallproducts() {
+		List<ProductEntity> products = repository.findAll();
+		return products;
+	}
+
+	
+	public ProductEntity searchById(long id)
+	{
+		Optional<ProductEntity>optionaldata = repository.findById(id);
+		if(optionaldata.isPresent())
+		{
+			ProductEntity product=optionaldata.get();		
+			}
+		else
+		{
+			return null;
+		
+	    }
+   }
+}
+
+
+    
+    	

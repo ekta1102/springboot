@@ -1,0 +1,9 @@
+package com.sathya.MVC.employeerepository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.sathya.MVC.employeeEntity.EmployeeEntity;
+
+public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Integer>{
+
+}
